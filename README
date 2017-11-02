@@ -1,0 +1,24 @@
+Small demo for rails using docker (for development, for staging/production), without loss of connections, even when updating gems.
+
+Prerequisites:
+- have docker installed (to run the containers)
+  # you should be able to run "docker run hello-world"
+- have docker compose installed (to run multiple containers, and define the dependencies between them)
+
+bootstrapping the container (first time running rails):
+- docker-compose run web rails new . --force --database=postgresql
+- as root: chown -R <user>:<group> . #TODO: integrate this
+- if need to rebuild: docker-compose build
+- if need to run: docker-compose run
+- if need to shutdown cleanly: docker-compose down
+
+
+# WARNING: Image for service web was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+
+# manually build a container:
+docker build -t friendlyname 
+docker images
+docker run <image>
+
+if see "Switch to inspect mode.", do:
+- docker run -it <image>
